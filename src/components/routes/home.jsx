@@ -1,3 +1,7 @@
+import { AppContext } from "../../utils/contextProvider";
+import { useContext } from "react";
+
 export default function Home() {
-  return <div>home</div>;
+  const { getCurrentUser } = useContext(AppContext);
+  return <div>{getCurrentUser().username}</div>;
 }
