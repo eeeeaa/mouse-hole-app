@@ -1,4 +1,5 @@
 export const getMyProfileUseCase = async (token) => {
+  //TODO need to change to url
   let user = null;
   let error = null;
 

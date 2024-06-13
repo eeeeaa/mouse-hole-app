@@ -76,33 +76,41 @@ function App() {
     localStorage.getItem("display_name")
   );
   const [userId, setUserId] = useState(localStorage.getItem("user_id"));
+  const [profileImageUrl, setProfileImageUrl] = useState(
+    localStorage.getItem("profile_url")
+  );
 
   const getCurrentUser = () => {
     return {
       username: username,
       display_name: displayName,
       user_id: userId,
+      profile_url: profileImageUrl,
     };
   };
 
-  const setCurrentUser = ({ username, display_name, user_id }) => {
+  const setCurrentUser = ({ username, display_name, user_id, profile_url }) => {
     localStorage.setItem("username", username);
     localStorage.setItem("display_name", display_name);
     localStorage.setItem("user_id", user_id);
+    localStorage.setItem("profile_url", profile_url);
 
     setUsername(localStorage.getItem("username"));
     setDisplayName(localStorage.getItem("display_name"));
     setUserId(localStorage.getItem("user_id"));
+    setProfileImageUrl(localStorage.getItem("profile_url"));
   };
 
   const removeCurrentUser = () => {
     localStorage.removeItem("username");
     localStorage.removeItem("display_name");
     localStorage.removeItem("user_id");
+    localStorage.removeItem("profile_url");
 
     setUsername("");
     setDisplayName("");
     setUserId("");
+    setProfileImageUrl("");
   };
 
   const router = createBrowserRouter([

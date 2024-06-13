@@ -56,10 +56,13 @@ export default function Login({ isSignup = false }) {
           maxAge: 10800, //3 hours
         });
 
+        //TODO need to change to url
+
         setCurrentUser({
           username: user.username,
           display_name: user.display_name ? user.display_name : "",
           user_id: user._id,
+          profile_url: user.profile_url ? user.profile_url : "",
         });
         setLoading(false);
         navigate("/");
