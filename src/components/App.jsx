@@ -40,10 +40,14 @@ function Root() {
     <div>
       <div className="content">
         <div className="sidebar-layout">
-          <Sidebar />
+          <div className="box">
+            <Sidebar />
+          </div>
         </div>
         <div className="topbar-layout">
-          <TopBar />
+          <div className="box">
+            <TopBar />
+          </div>
         </div>
         <div className="container">
           <div className="box">

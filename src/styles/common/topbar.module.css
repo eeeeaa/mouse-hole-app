@@ -1,0 +1,29 @@
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+}
+
+.topbar-title {
+  font-weight: 200;
+  font-size: xx-large;
+}
+
+.menu-list {
+  display: flex;
+  gap: 1em;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  text-decoration: none;
+  color: white;
+  transition: color 0.2s ease;
+}
+
+.menu-item:hover {
+  color: #94a3b8;
+}
