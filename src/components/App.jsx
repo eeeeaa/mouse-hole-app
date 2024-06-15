@@ -15,6 +15,9 @@ import Sidebar from "./common/sidebar";
 import TopBar from "./common/topbar";
 
 import Login from "./routes/login";
+import ProfilePage from "./routes/profile";
+import MyFollowings from "./routes/myfollowings";
+import PostPage from "./routes/post";
 
 function Auth() {
   return <Outlet />;
@@ -138,7 +141,27 @@ function App() {
       children: [
         {
           index: true,
-          element: <Home />,
+          element: <Home isAll={false} />,
+        },
+        {
+          path: "/all",
+          element: <Home isAll={true} />,
+        },
+        {
+          path: "/my-profile",
+          element: <ProfilePage isMe={true} />,
+        },
+        {
+          path: "/users/:userId",
+          element: <ProfilePage isMe={false} />,
+        },
+        {
+          path: "/my-followings",
+          element: <MyFollowings />,
+        },
+        {
+          path: "/posts/:postId",
+          element: <PostPage />,
         },
       ],
     },

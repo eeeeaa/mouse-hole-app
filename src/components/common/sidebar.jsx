@@ -4,6 +4,7 @@ import { AppContext } from "../../utils/contextProvider";
 import { Link, useNavigate } from "react-router-dom";
 import Placeholder from "../../assets/image/placeholder.svg?react";
 import PropTypes from "prop-types";
+import LinesEllipsis from "react-lines-ellipsis";
 
 MenuItem.propTypes = {
   title: PropTypes.string,
@@ -53,7 +54,13 @@ export default function Sidebar() {
           <Placeholder className={styles["profile-icon"]} />
         )}
         <h1 className={styles["profile-name"]}>
-          {user.display_name ? user.display_name : user.username}
+          <LinesEllipsis
+            text={user.display_name ? user.display_name : user.username}
+            maxLine="1"
+            ellipsis="..."
+            trimRight={true}
+            basedOn="letters"
+          />
         </h1>
       </div>
       <ul className={styles["menu-list"]}>
