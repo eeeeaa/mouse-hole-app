@@ -1,7 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../utils/contextProvider";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
+import styles from "../../styles/routes/profile.module.css";
 
 import { updateMyProfile } from "../../domain/user/userUseCase";
 
@@ -21,14 +22,15 @@ function UserProfile() {
 }
 
 function MyProfile() {
-  const { getCurrentUser, setCurrentUser, cookies } = useContext(AppContext);
+  const { getCurrentUser, setCurrentUser, cookies, notify } =
+    useContext(AppContext);
   const token = cookies["token"];
   const currentUser = getCurrentUser();
 
   const [err, setErr] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const [displayName, setDisplayName] = useState("");
+  const [displayName, setDisplayName] = useState(currentUser.display_name);
   const [image, setImage] = useState(null);
 
   const handleSubmit = async (e) => {
@@ -55,37 +57,53 @@ function MyProfile() {
         profile_url: user.profile_url,
       });
     } catch (error) {
+      setLoading(false);
       setErr(error);
     }
   };
 
-  if (err) return <ErrorPage errorMsg={err.message} />;
+  useEffect(() => {
+    if (err) notify(err.message);
+  }, [err, notify]);
+
   if (loading) return <LoadingPage />;
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div>
-          <label htmlFor="image">Image:</label>
+    <div className={styles.container}>
+      <form
+        className={styles["profile-form"]}
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+      >
+        <div className={styles["form-input-field"]}>
+          <label htmlFor="image" className={styles["form-label"]}>
+            Image:
+          </label>
           <input
             type="file"
             name="image"
             id="image"
             accept=".gif,.jpg,.jpeg,.png"
+            className={styles["form-input-file"]}
             onChange={(e) => setImage(e.target.files[0])}
           />
         </div>
-        <div>
-          <label htmlFor="display_name">Display Name:</label>
+        <div className={styles["form-input-field"]}>
+          <label htmlFor="display_name" className={styles["form-label"]}>
+            Display Name:
+          </label>
           <input
             type="text"
             name="display_name"
             id="display_name"
+            className={styles["form-input-text"]}
             onChange={(e) => setDisplayName(e.target.value)}
             value={displayName}
           />
         </div>
-        <button type="submit">Update profile</button>
+        <button className={styles["form-button"]} type="submit">
+          Update profile
+        </button>
       </form>
     </div>
   );

@@ -7,6 +7,8 @@ import {
 import { useState, useEffect, useContext } from "react";
 import { useCookies } from "react-cookie";
 import { AppContext } from "../utils/contextProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../styles/App.css";
 
 import ErrorPage from "./common/error";
@@ -20,7 +22,24 @@ import MyFollowings from "./routes/myfollowings";
 import PostPage from "./routes/post";
 
 function Auth() {
-  return <Outlet />;
+  return (
+    <div>
+      <Outlet />
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
+    </div>
+  );
 }
 
 function Root() {
@@ -72,6 +91,19 @@ function Root() {
           <li></li>
         </ul>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
     </div>
   );
 }
@@ -86,6 +118,11 @@ function App() {
   const [profileImageUrl, setProfileImageUrl] = useState(
     localStorage.getItem("profile_url")
   );
+
+  const [myFeeds, setMyFeeds] = useState([]);
+  const [allPosts, setAllPosts] = useState([]);
+
+  const notify = (text) => toast(text);
 
   const getCurrentUser = () => {
     return {
@@ -132,6 +169,11 @@ function App() {
             getCurrentUser,
             setCurrentUser,
             removeCurrentUser,
+            myFeeds,
+            setMyFeeds,
+            allPosts,
+            setAllPosts,
+            notify,
           }}
         >
           <Root />
@@ -176,6 +218,7 @@ function App() {
             getCurrentUser,
             setCurrentUser,
             removeCurrentUser,
+            notify,
           }}
         >
           <Auth />

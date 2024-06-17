@@ -1,5 +1,5 @@
 import styles from "../../styles/routes/login.module.css";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AppContext } from "../../utils/contextProvider";
 import PropTypes from "prop-types";
@@ -15,7 +15,7 @@ Login.propTypes = {
 
 export default function Login({ isSignup = false }) {
   const navigate = useNavigate();
-  const { setCookie, setCurrentUser } = useContext(AppContext);
+  const { setCookie, setCurrentUser, notify } = useContext(AppContext);
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
   const [passwordConfirm, setPasswordConfirm] = useState();
@@ -67,17 +67,16 @@ export default function Login({ isSignup = false }) {
         setLoading(false);
         navigate("/");
       } catch (error) {
+        setLoading(false);
         setError(error);
       }
     }
   };
 
-  if (error)
-    return (
-      <div className={styles["content"]}>
-        <ErrorPage errorMsg={error.message} />
-      </div>
-    );
+  useEffect(() => {
+    if (error) notify(error.message);
+  }, [error, notify]);
+
   if (loading)
     return (
       <div className={styles["content"]}>
