@@ -27,7 +27,34 @@ export const getMyFeedUseCase = async (token) => {
   return { posts, error };
 };
 
-export const getAllPostsUseCase = (token) => {};
+export const getAllPostsUseCase = async (token) => {
+  let posts = [];
+  let error = null;
+
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  };
+  await fetch(`${import.meta.env.VITE_MOUSE_HOLE_API_URL}/posts`, {
+    method: "GET",
+    mode: "cors",
+    headers: headers,
+  })
+    .then(async (response) => {
+      if (response.status >= 400) {
+        console.log(response);
+        const json = await response.json();
+        throw new Error(json.message);
+      }
+      return response.json();
+    })
+    .then((response) => {
+      posts = response.posts;
+    })
+    .catch((err) => (error = err));
+
+  return { posts, error };
+};
 
 export const createPostUseCase = async ({
   token,
@@ -42,7 +69,9 @@ export const createPostUseCase = async ({
   formData.append("title", title);
   formData.append("content", content);
   if (files) {
-    formData.append("image", files);
+    for (const file of files) {
+      formData.append("image", file);
+    }
   }
 
   const headers = {

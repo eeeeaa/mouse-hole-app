@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 
 import { loginUseCase, signupUseCase } from "../../domain/auth/authUseCase";
 import { getMyProfileUseCase } from "../../domain/user/userUseCase";
-import ErrorPage from "../common/error";
 import LoadingPage from "../common/loadingPage";
 
 Login.propTypes = {
@@ -74,7 +73,7 @@ export default function Login({ isSignup = false }) {
   };
 
   useEffect(() => {
-    if (error) notify(error.message);
+    if (error) notify(error.message, "error");
   }, [error, notify]);
 
   if (loading)

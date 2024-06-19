@@ -1,9 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
 .post-form {
   display: flex;
   flex-direction: column;
   gap: 1em;
   padding: 1em;
   background-color: #374151;
+  border-radius: 1em;
+  margin: 0 1em 0 1em;
 }
 
 .post-field {
@@ -16,6 +23,9 @@
 }
 
 .post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
   max-height: 41vh;
   overflow-y: auto;
 }

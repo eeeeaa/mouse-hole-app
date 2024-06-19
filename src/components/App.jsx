@@ -7,7 +7,8 @@ import {
 import { useState, useEffect, useContext } from "react";
 import { useCookies } from "react-cookie";
 import { AppContext } from "../utils/contextProvider";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import { notify } from "./common/toastProvider";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/App.css";
 
@@ -25,19 +26,7 @@ function Auth() {
   return (
     <div>
       <Outlet />
-      <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition:Bounce
-      />
+      <ToastContainer limit={3} />
     </div>
   );
 }
@@ -91,19 +80,7 @@ function Root() {
           <li></li>
         </ul>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition:Bounce
-      />
+      <ToastContainer limit={3} />
     </div>
   );
 }
@@ -121,8 +98,7 @@ function App() {
 
   const [myFeeds, setMyFeeds] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
-
-  const notify = (text) => toast(text);
+  const [refresh, setRefresh] = useState(false);
 
   const getCurrentUser = () => {
     return {
@@ -174,6 +150,8 @@ function App() {
             allPosts,
             setAllPosts,
             notify,
+            refresh,
+            setRefresh,
           }}
         >
           <Root />

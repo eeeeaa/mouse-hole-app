@@ -33,6 +33,8 @@ function MyProfile() {
   const [displayName, setDisplayName] = useState(currentUser.display_name);
   const [image, setImage] = useState(null);
 
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -56,6 +58,7 @@ function MyProfile() {
         user_id: user._id,
         profile_url: user.profile_url,
       });
+      notify("profile updated", "success");
     } catch (error) {
       setLoading(false);
       setErr(error);
@@ -63,10 +66,13 @@ function MyProfile() {
   };
 
   useEffect(() => {
-    if (err) notify(err.message);
-  }, [err, notify]);
+    if (err) notify(err.message, "error");
+    if (loading) notify("loading...", "default");
+  }, [err, notify, loading]);
 
-  if (loading) return <LoadingPage />;
+  useEffect(() => {
+    setButtonDisabled(displayName.length === 0 || loading);
+  }, [displayName, loading]);
 
   return (
     <div className={styles.container}>
@@ -101,7 +107,11 @@ function MyProfile() {
             value={displayName}
           />
         </div>
-        <button className={styles["form-button"]} type="submit">
+        <button
+          className={styles["form-button"]}
+          type="submit"
+          disabled={buttonDisabled}
+        >
           Update profile
         </button>
       </form>

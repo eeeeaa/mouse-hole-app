@@ -1,0 +1,52 @@
+.container {
+  align-self: center;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  margin: 1em;
+  padding: 1em;
+  background-color: #525252;
+  border-radius: 1em;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1em;
+  border-bottom: 1px solid white;
+}
+
+.title {
+  font-weight: 300;
+  font-size: x-large;
+}
+
+.profile {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-content {
+  width: 500px;
+  word-break: break-all;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image {
+  height: 64px;
+  width: 64px;
+  object-fit: cover;
+}
