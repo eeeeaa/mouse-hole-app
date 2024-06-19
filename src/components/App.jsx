@@ -21,6 +21,7 @@ import Login from "./routes/login";
 import ProfilePage from "./routes/profile";
 import MyFollowings from "./routes/myfollowings";
 import PostPage from "./routes/post";
+import CreatePost from "./routes/createPost";
 
 function Auth() {
   return (
@@ -182,6 +183,10 @@ function App() {
         {
           path: "/posts/:postId",
           element: <PostPage />,
+        },
+        {
+          path: "/create-post",
+          element: <CreatePost />,
         },
       ],
     },

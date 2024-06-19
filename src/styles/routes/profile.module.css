@@ -1,7 +1,6 @@
 .container {
-  height: 37vh;
+  height: 80%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 1em;

@@ -1,4 +1,4 @@
-import styles from "../../../styles/routes/home.module.css";
+import styles from "../../../styles/common/postinput.module.css";
 import { useContext, useState, useEffect } from "react";
 import { AppContext } from "../../../utils/contextProvider";
 

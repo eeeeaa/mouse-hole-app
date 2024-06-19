@@ -3,7 +3,6 @@ import styles from "../../styles/routes/home.module.css";
 
 import MyFeed from "./home/myFeed";
 import AllPosts from "./home/allPost";
-import PostInputField from "./home/postInput";
 
 Home.propTypes = {
   isAll: PropTypes.bool,
@@ -12,7 +11,6 @@ Home.propTypes = {
 export default function Home({ isAll }) {
   return (
     <div className={styles["container"]}>
-      <PostInputField />
       {isAll ? <AllPosts /> : <MyFeed />}
     </div>
   );

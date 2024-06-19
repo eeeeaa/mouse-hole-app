@@ -3,29 +3,10 @@
   flex-direction: column;
 }
 
-.post-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  padding: 1em;
-  background-color: #374151;
-  border-radius: 1em;
-  margin: 0 1em 0 1em;
-}
-
-.post-field {
-  display: grid;
-  grid-template: 1fr/1fr 2fr;
-}
-
-.post-textarea {
-  resize: none;
-}
-
 .post-list {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  max-height: 41vh;
+  max-height: 66vh;
   overflow-y: auto;
 }
