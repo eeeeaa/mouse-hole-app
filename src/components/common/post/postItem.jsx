@@ -96,13 +96,15 @@ function Header({ post }) {
             basedOn="words"
           />
         </div>
+        <div>
+          {user.user_id === post.author._id ? (
+            <></>
+          ) : (
+            <FollowToggleButton postAuthor={post.author} />
+          )}
+          <DeletePostButton toBeDeletedPost={post} />
+        </div>
       </div>
-      {user.user_id === post.author._id ? (
-        <></>
-      ) : (
-        <FollowToggleButton postAuthor={post.author} />
-      )}
-      <DeletePostButton toBeDeletedPost={post} />
     </div>
   );
 }
