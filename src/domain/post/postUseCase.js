@@ -98,3 +98,32 @@ export const createPostUseCase = async ({
 
   return { post, error };
 };
+
+export const deletePost = async (token, postId) => {
+  let post = null;
+  let error = null;
+
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  };
+  await fetch(`${import.meta.env.VITE_MOUSE_HOLE_API_URL}/posts/${postId}`, {
+    method: "DELETE",
+    mode: "cors",
+    headers: headers,
+  })
+    .then(async (response) => {
+      if (response.status >= 400) {
+        console.log(response);
+        const json = await response.json();
+        throw new Error(json.message);
+      }
+      return response.json();
+    })
+    .then((response) => {
+      post = response.deletedPost;
+    })
+    .catch((err) => (error = err));
+
+  return { post, error };
+};

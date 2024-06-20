@@ -29,6 +29,12 @@
   align-items: center;
 }
 
+.delete-button {
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+}
+
 .content {
   display: flex;
   flex-wrap: wrap;

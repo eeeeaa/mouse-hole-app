@@ -1,0 +1,62 @@
+.modal-show {
+  display: block;
+  animation: fadein 0.2s ease;
+}
+
+.modal-hide {
+  display: none;
+  animation: fadeout 0.2s ease;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.close-button {
+  cursor: pointer;
+  align-self: flex-end;
+  height: 24px;
+  width: 24px;
+  padding: 0.5em;
+}
+
+.header {
+  display: flex;
+  justify-content: end;
+  background-color: #475569;
+  width: 100%;
+  border-radius: 1em 1em 0 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
+  background-color: #1e293b;
+  border-radius: 0 0 1em 1em;
+}
+
+.modal-main {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 300px;
+  top: 30%;
+  left: 50%;
+  z-index: 100;
+}
