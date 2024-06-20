@@ -57,9 +57,14 @@
   width: 500px;
   word-break: break-all;
 }
+
 .footer {
   display: flex;
   justify-content: space-between;
+}
+
+.date {
+  word-break: break-all;
 }
 
 .image {

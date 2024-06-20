@@ -30,8 +30,30 @@ function ImageItem({ url }) {
 function Footer({ post }) {
   return (
     <div className={styles.footer}>
-      <div>{post.created_at}</div>
-      <div>{post.updated_at}</div>
+      <LinesEllipsis
+        className={styles["date"]}
+        text={`created At: ${new Date(post.created_at).toLocaleDateString([], {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}`}
+        maxLine="2"
+        ellipsis="..."
+        trimRight
+        basedOn="letters"
+      />
+      <LinesEllipsis
+        className={styles["date"]}
+        text={`updated At: ${new Date(post.updated_at).toLocaleDateString([], {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}`}
+        maxLine="2"
+        ellipsis="..."
+        trimRight
+        basedOn="letters"
+      />
     </div>
   );
 }
