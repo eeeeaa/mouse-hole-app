@@ -11,6 +11,12 @@
   font-size: xx-large;
 }
 
+.item {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+}
+
 .menu-list {
   display: flex;
   gap: 1em;
