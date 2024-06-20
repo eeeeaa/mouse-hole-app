@@ -7,6 +7,11 @@ import { useContext, useEffect, useState } from "react";
 import { MdOutlineDeleteForever } from "react-icons/md";
 
 import { deletePost } from "../../../domain/post/postUseCase";
+import {
+  getMyFollowStatus,
+  followUser,
+  unfollowUser,
+} from "../../../domain/user/userRelationshipUseCase";
 import Modal from "../modal";
 
 ImageItem.propTypes = {
@@ -72,6 +77,117 @@ function DeletePostButton({ toBeDeletedPost }) {
   );
 }
 
+function FollowToggleButton({ postAuthor }) {
+  const { notify, cookies } = useContext(AppContext);
+  const token = cookies["token"];
+  const [follow, setFollow] = useState(false);
+  const [buttonState, setButtonState] = useState("");
+
+  const [err, setErr] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [statusLoaded, setStatusLoaded] = useState(false);
+
+  const loadFollowStatus = async () => {
+    try {
+      setIsLoading(true);
+      const { userRelationship, error } = await getMyFollowStatus(
+        token,
+        postAuthor._id
+      );
+      if (error) {
+        setErr(error);
+        setIsLoading(false);
+        return;
+      }
+
+      if (userRelationship) {
+        setFollow(true);
+      } else {
+        setFollow(false);
+      }
+
+      setIsLoading(false);
+      setStatusLoaded(true);
+    } catch (error) {
+      setIsLoading(false);
+      setErr(error);
+    }
+  };
+
+  const handleFollowToggle = async () => {
+    try {
+      setIsLoading(true);
+      if (follow) {
+        //send unfollow request
+        const { userRelationship, error } = await unfollowUser(
+          token,
+          postAuthor._id
+        );
+        if (error) {
+          setErr(error);
+          setIsLoading(false);
+          return;
+        }
+
+        setFollow(false);
+        setIsLoading(false);
+      } else {
+        //send follow request
+        const { userRelationship, error } = await followUser(
+          token,
+          postAuthor._id
+        );
+        if (error) {
+          setErr(error);
+          setIsLoading(false);
+          return;
+        }
+
+        setFollow(true);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      setErr(error);
+    }
+  };
+
+  useEffect(() => {
+    if (follow) {
+      setButtonState(styles["follow"]);
+    } else {
+      setButtonState("");
+    }
+  }, [follow]);
+
+  useEffect(() => {
+    if (err) {
+      notify(err.message, "error");
+    }
+  }, [err, notify]);
+
+  return (
+    <div>
+      {isLoading ? (
+        <div>loading...</div>
+      ) : (
+        <div>
+          {statusLoaded ? (
+            <div
+              className={`${styles["follow-button"]} ${buttonState}`}
+              onClick={handleFollowToggle}
+            >
+              {follow ? "Following" : "Not Follow"}
+            </div>
+          ) : (
+            <button onClick={loadFollowStatus}>follow status</button>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function PostItem({ post }) {
   const { getCurrentUser } = useContext(AppContext);
   const user = getCurrentUser();
@@ -108,6 +224,11 @@ export default function PostItem({ post }) {
             />
           </div>
         </div>
+        {user.user_id === post.author._id ? (
+          <></>
+        ) : (
+          <FollowToggleButton postAuthor={post.author} />
+        )}
         <DeletePostButton toBeDeletedPost={post} />
       </div>
       <div className={styles.content}>

@@ -13,6 +13,7 @@
 .header {
   display: flex;
   justify-content: space-between;
+  gap: 1em;
   align-items: center;
   padding-bottom: 1em;
   border-bottom: 1px solid white;
@@ -21,12 +22,21 @@
 .title {
   font-weight: 300;
   font-size: x-large;
+  margin-right: auto;
 }
 
 .profile {
   display: flex;
   gap: 1em;
   align-items: center;
+}
+
+.profile-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  border: 1px solid white;
+  object-fit: cover;
 }
 
 .delete-button {
@@ -55,4 +65,19 @@
   height: 64px;
   width: 64px;
   object-fit: cover;
+}
+
+.follow-button {
+  display: flex;
+  padding: 0.2em 0.5em;
+  color: white;
+  background-color: #1f2937;
+  border-radius: 0.5em;
+  cursor: pointer;
+}
+
+.follow {
+  color: white;
+  background-color: #2eb82e;
+  border-color: #2eb82e;
 }
