@@ -6,10 +6,9 @@ import { AppContext } from "../../../utils/contextProvider";
 import { useContext, useEffect, useState } from "react";
 import FollowToggleButton from "./followButton";
 import DeletePostButton from "./deleteButton";
+import ImageCarousel from "../imageCarousel";
+import LikeButton from "./likeButton";
 
-ImageItem.propTypes = {
-  url: PropTypes.string,
-};
 PostItem.propTypes = {
   post: PropTypes.object,
 };
@@ -22,10 +21,6 @@ Content.propTypes = {
 Footer.propTypes = {
   post: PropTypes.object,
 };
-
-function ImageItem({ url }) {
-  return <img className={styles.image} src={url} alt="" />;
-}
 
 function Footer({ post }) {
   return (
@@ -61,15 +56,7 @@ function Footer({ post }) {
 function Content({ post }) {
   return (
     <div className={styles.content}>
-      <div>
-        {post.image_urls.length > 0 ? (
-          post.image_urls.map((url, index) => (
-            <ImageItem key={index} url={url} />
-          ))
-        ) : (
-          <></>
-        )}
-      </div>
+      <ImageCarousel images={post.image_urls} />
       <div>
         <LinesEllipsis
           className={styles["text-content"]}
@@ -117,6 +104,9 @@ function Header({ post }) {
             ellipsis="..."
             basedOn="words"
           />
+        </div>
+        <div>
+          <LikeButton post={post} />
         </div>
         <div>
           {user.user_id === post.author._id ? (

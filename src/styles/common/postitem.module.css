@@ -39,23 +39,37 @@
   object-fit: cover;
 }
 
+.like-button {
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+}
+
 .delete-button {
   cursor: pointer;
   height: 24px;
   width: 24px;
-  margin-top: 6px;
+  margin-top: 8px;
+}
+
+.like-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
 }
 
 .content {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  align-items: center;
+
+  gap: 1em;
 }
 
 .text-content {
-  width: 500px;
   word-break: break-all;
+  padding: 1em;
+  border: 1px white solid;
 }
 
 .footer {
@@ -65,12 +79,6 @@
 
 .date {
   word-break: break-all;
-}
-
-.image {
-  height: 64px;
-  width: 64px;
-  object-fit: cover;
 }
 
 .follow-button {

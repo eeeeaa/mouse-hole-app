@@ -1,0 +1,20 @@
+.container {
+  max-height: 500px;
+  max-width: 500px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.action {
+  display: flex;
+  gap: 1em;
+}
+.image {
+  max-height: 250px;
+  max-width: 250px;
+  object-fit: cover;
+}

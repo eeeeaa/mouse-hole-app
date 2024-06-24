@@ -13,7 +13,6 @@ export const getMyFeedUseCase = async (token) => {
   })
     .then(async (response) => {
       if (response.status >= 400) {
-        console.log(response);
         const json = await response.json();
         throw new Error(json.message);
       }
@@ -42,7 +41,6 @@ export const getAllPostsUseCase = async (token) => {
   })
     .then(async (response) => {
       if (response.status >= 400) {
-        console.log(response);
         const json = await response.json();
         throw new Error(json.message);
       }
@@ -86,7 +84,6 @@ export const createPostUseCase = async ({
     .then(async (response) => {
       if (response.status >= 400) {
         const json = await response.json();
-        console.log(json);
         throw new Error(json.message);
       }
       return response.json();
@@ -114,7 +111,6 @@ export const deletePost = async (token, postId) => {
   })
     .then(async (response) => {
       if (response.status >= 400) {
-        console.log(response);
         const json = await response.json();
         throw new Error(json.message);
       }
