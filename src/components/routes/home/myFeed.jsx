@@ -14,26 +14,31 @@ export default function MyFeed() {
   const [err, setErr] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        setLoading(true);
-        const { posts, error } = await getMyFeedUseCase(token);
-        if (error) {
-          setErr(error);
-        }
-        setLoading(false);
-        setMyFeeds(posts);
-      } catch (error) {
-        setLoading(false);
+  const loadData = async () => {
+    try {
+      setLoading(true);
+      const { posts, error } = await getMyFeedUseCase(token);
+      if (error) {
         setErr(error);
       }
-    };
+      setLoading(false);
+      setMyFeeds(posts);
+    } catch (error) {
+      setLoading(false);
+      setErr(error);
+    }
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  useEffect(() => {
     if (refresh) {
       setRefresh(false);
       loadData();
     }
-  }, [refresh, setMyFeeds, setRefresh, token]);
+  }, [refresh, setRefresh]);
 
   useEffect(() => {
     if (err) {
