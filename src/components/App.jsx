@@ -23,8 +23,6 @@ import MyFollowings from "./routes/myfollowings";
 import PostPage from "./routes/post";
 import CreatePost from "./routes/createPost";
 
-import { IoMdRefresh } from "react-icons/io";
-
 function Auth() {
   return (
     <div>
@@ -36,7 +34,7 @@ function Auth() {
 
 function Root() {
   const navigate = useNavigate();
-  const { cookies, setRefresh } = useContext(AppContext);
+  const { cookies } = useContext(AppContext);
 
   useEffect(() => {
     if (cookies["token"] === undefined) {
@@ -65,10 +63,6 @@ function Root() {
         </div>
         <div className="container">
           <div className="box">
-            <IoMdRefresh
-              className="refresh-icon"
-              onClick={() => setRefresh(true)}
-            />
             <Outlet />
           </div>
         </div>
@@ -105,7 +99,6 @@ function App() {
 
   const [myFeeds, setMyFeeds] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
-  const [refresh, setRefresh] = useState(true);
 
   const getCurrentUser = () => {
     return {
@@ -157,8 +150,6 @@ function App() {
             allPosts,
             setAllPosts,
             notify,
-            refresh,
-            setRefresh,
           }}
         >
           <Root />

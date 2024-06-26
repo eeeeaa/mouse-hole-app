@@ -7,9 +7,8 @@ import { getMyFeedUseCase } from "../../../domain/post/postUseCase";
 import LoadingPage from "../../common/loadingPage";
 import PostItem from "../../common/post/postItem";
 
-export default function MyFeed() {
-  const { myFeeds, setMyFeeds, cookies, notify, refresh, setRefresh } =
-    useContext(AppContext);
+export default function MyFeed({ refresh, setRefresh }) {
+  const { myFeeds, setMyFeeds, cookies, notify } = useContext(AppContext);
   const token = cookies["token"];
   const [err, setErr] = useState(null);
   const [loading, setLoading] = useState(false);

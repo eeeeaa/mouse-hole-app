@@ -11,6 +11,7 @@ export default function CommentInputForm({ isExpand, setIsExpand, post }) {
   const token = cookies["token"];
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const handleToggleExpand = () => {
     setIsExpand(!isExpand);
@@ -30,6 +31,7 @@ export default function CommentInputForm({ isExpand, setIsExpand, post }) {
         notify("comment created", "success");
       }
       setLoading(false);
+      setMsg("");
     } catch (error) {
       setLoading(false);
       notify(error.message, "error");
@@ -41,6 +43,10 @@ export default function CommentInputForm({ isExpand, setIsExpand, post }) {
       notify("creating comment...", "default");
     }
   }, [loading, notify]);
+
+  useEffect(() => {
+    setIsButtonDisabled(loading || msg.length === 0);
+  }, [loading, msg]);
   return (
     <div className={styles.container} onSubmit={handleSubmit}>
       <form className={styles["comment-form"]}>
@@ -53,7 +59,9 @@ export default function CommentInputForm({ isExpand, setIsExpand, post }) {
           onChange={(e) => setMsg(e.target.value)}
         />
         <div className={styles.buttons}>
-          <button type="submit">Create Comment</button>
+          <button type="submit" disabled={isButtonDisabled}>
+            Create Comment
+          </button>
           <button onClick={handleToggleExpand} type="button">
             toggle comment
           </button>

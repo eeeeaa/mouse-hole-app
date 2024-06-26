@@ -10,7 +10,7 @@ import CommentList from "../common/comment/commentList";
 
 export default function PostPage() {
   const { postId } = useParams();
-  const { cookies, notify, refresh, setRefresh } = useContext(AppContext);
+  const { cookies, notify } = useContext(AppContext);
   const token = cookies["token"];
 
   const [detail, setDetail] = useState(null);
@@ -37,13 +37,6 @@ export default function PostPage() {
   useEffect(() => {
     loadData();
   }, []);
-
-  useEffect(() => {
-    if (refresh) {
-      setRefresh(false);
-      loadData();
-    }
-  }, [refresh, setRefresh]);
 
   useEffect(() => {
     if (err) {

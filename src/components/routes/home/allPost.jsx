@@ -6,9 +6,8 @@ import { getAllPostsUseCase } from "../../../domain/post/postUseCase";
 import LoadingPage from "../../common/loadingPage";
 import PostItem from "../../common/post/postItem";
 
-export default function AllPosts() {
-  const { allPosts, setAllPosts, refresh, setRefresh, cookies, notify } =
-    useContext(AppContext);
+export default function AllPosts({ refresh, setRefresh }) {
+  const { allPosts, setAllPosts, cookies, notify } = useContext(AppContext);
 
   const token = cookies["token"];
   const [err, setErr] = useState(null);

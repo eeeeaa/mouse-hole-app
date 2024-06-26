@@ -16,29 +16,29 @@ export default function CommentList({ post }) {
   const [data, setData] = useState([]);
   const [isExpand, setIsExpand] = useState(false);
 
-  const loadComments = async () => {
-    try {
-      setLoading(true);
-      const { comments, error } = await getComments(token, post._id);
-      if (error) {
+  useEffect(() => {
+    const loadComments = async () => {
+      try {
+        setLoading(true);
+        const { comments, error } = await getComments(token, post._id);
+        if (error) {
+          setLoading(false);
+          setErr(error);
+          return;
+        }
+
+        setLoading(false);
+        setData(comments);
+      } catch (error) {
         setLoading(false);
         setErr(error);
-        return;
       }
+    };
 
-      setLoading(false);
-      setData(comments);
-    } catch (error) {
-      setLoading(false);
-      setErr(error);
-    }
-  };
-
-  useEffect(() => {
     if (isExpand) {
       loadComments();
     }
-  }, [isExpand]);
+  }, [isExpand, token, post]);
 
   useEffect(() => {
     if (err) {
