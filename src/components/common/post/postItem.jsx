@@ -4,19 +4,24 @@ import Placeholder from "../../../assets/image/placeholder.svg?react";
 import LinesEllipsis from "react-lines-ellipsis";
 import { AppContext } from "../../../utils/contextProvider";
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import FollowToggleButton from "./followButton";
 import DeletePostButton from "./deleteButton";
 import ImageCarousel from "../imageCarousel";
 import LikeButton from "./likeButton";
+import { BiMessageDetail } from "react-icons/bi";
+import { decode } from "html-entities";
 
 PostItem.propTypes = {
   post: PropTypes.object,
+  fullDetail: PropTypes.bool,
 };
 Header.propTypes = {
   post: PropTypes.object,
 };
 Content.propTypes = {
   post: PropTypes.object,
+  fullDetail: PropTypes.bool,
 };
 Footer.propTypes = {
   post: PropTypes.object,
@@ -53,19 +58,23 @@ function Footer({ post }) {
   );
 }
 
-function Content({ post }) {
+function Content({ post, fullDetail }) {
   return (
     <div className={styles.content}>
       <ImageCarousel images={post.image_urls} />
       <div>
-        <LinesEllipsis
-          className={styles["text-content"]}
-          text={post.content}
-          maxLine="2"
-          ellipsis="..."
-          trimRight={true}
-          basedOn="letters"
-        />
+        {fullDetail ? (
+          <div className={styles["text-content"]}>{decode(post.content)}</div>
+        ) : (
+          <LinesEllipsis
+            className={styles["text-content"]}
+            text={decode(post.content)}
+            maxLine="2"
+            ellipsis="..."
+            trimRight={true}
+            basedOn="letters"
+          />
+        )}
       </div>
     </div>
   );
@@ -106,6 +115,11 @@ function Header({ post }) {
           />
         </div>
         <div>
+          <Link to={`/posts/${post._id}`}>
+            <BiMessageDetail className={styles["detail-button"]} />
+          </Link>
+        </div>
+        <div>
           <LikeButton post={post} />
         </div>
         <div>
@@ -120,11 +134,11 @@ function Header({ post }) {
     </div>
   );
 }
-export default function PostItem({ post }) {
+export default function PostItem({ post, fullDetail = false }) {
   return (
     <div className={styles.container}>
       <Header post={post} />
-      <Content post={post} />
+      <Content post={post} fullDetail={fullDetail} />
       <Footer post={post} />
     </div>
   );

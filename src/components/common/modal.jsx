@@ -1,5 +1,12 @@
 import styles from "../../styles/common/modal.module.css";
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import PropTypes from "prop-types";
+
+Modal.propTypes = {
+  handleClose: PropTypes.func,
+  show: PropTypes.bool,
+  children: PropTypes.array,
+};
 
 export default function Modal({ handleClose, show, children }) {
   const showHideClassName = show ? styles["modal-show"] : styles["modal-hide"];

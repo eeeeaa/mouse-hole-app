@@ -123,3 +123,31 @@ export const deletePost = async (token, postId) => {
 
   return { post, error };
 };
+
+export const getPost = async (token, postId) => {
+  let post = null;
+  let error = null;
+
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  };
+  await fetch(`${import.meta.env.VITE_MOUSE_HOLE_API_URL}/posts/${postId}`, {
+    method: "GET",
+    mode: "cors",
+    headers: headers,
+  })
+    .then(async (response) => {
+      if (response.status >= 400) {
+        const json = await response.json();
+        throw new Error(json.message);
+      }
+      return response.json();
+    })
+    .then((response) => {
+      post = response.post;
+    })
+    .catch((err) => (error = err));
+
+  return { post, error };
+};
