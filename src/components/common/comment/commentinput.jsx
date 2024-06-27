@@ -50,14 +50,19 @@ export default function CommentInputForm({ isExpand, setIsExpand, post }) {
   return (
     <div className={styles.container} onSubmit={handleSubmit}>
       <form className={styles["comment-form"]}>
-        <label htmlFor="message">Message:</label>
-        <input
-          type="text"
-          name="message"
-          id="message"
-          value={msg}
-          onChange={(e) => setMsg(e.target.value)}
-        />
+        <div className={styles["comment-box-container"]}>
+          <label htmlFor="message">Leave a comment</label>
+          <textarea
+            type="text"
+            name="message"
+            id="message"
+            className={styles["comment-box"]}
+            value={msg}
+            cols={50}
+            rows={3}
+            onChange={(e) => setMsg(e.target.value)}
+          />
+        </div>
         <div className={styles.buttons}>
           <button type="submit" disabled={isButtonDisabled}>
             Create Comment

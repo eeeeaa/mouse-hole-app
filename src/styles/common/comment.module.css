@@ -12,8 +12,8 @@
 }
 
 .comment-form {
-  display: grid;
-  grid-template: 1fr 1fr / 1fr 4fr;
+  display: flex;
+  flex-direction: column;
   gap: 1em;
   padding: 1em;
   align-items: center;
@@ -23,6 +23,23 @@
   display: flex;
   flex-direction: column;
   gap: 1em;
+}
+
+.comment-box-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.comment-box {
+  appearance: none;
+  border-radius: 1em;
+  border-color: transparent;
+  resize: none;
+  background-color: #1e293b;
+  outline: none;
+  padding: 1em;
 }
 
 .buttons {
@@ -42,6 +59,8 @@
   .item-header {
     display: flex;
     justify-content: space-between;
+    gap: 1em;
+    align-items: center;
   }
   .item-content {
     padding: 1em;
@@ -51,4 +70,15 @@
     display: flex;
     justify-content: space-between;
   }
+}
+.item-title {
+  margin-right: auto;
+}
+
+.profile-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  border: 1px solid white;
+  object-fit: cover;
 }
