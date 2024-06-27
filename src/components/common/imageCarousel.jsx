@@ -2,6 +2,9 @@ import styles from "../../styles/common/imagecarousel.module.css";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
+import { GrCaretNext } from "react-icons/gr";
+import { GrCaretPrevious } from "react-icons/gr";
+
 ImageCarousel.propTypes = {
   images: PropTypes.array,
 };
@@ -45,11 +48,14 @@ export default function ImageCarousel({ images }) {
 
       {images.length > 1 && isImageLoaded ? (
         <div className={styles.action}>
-          <button onClick={previousSlide}>Previous</button>
+          <GrCaretPrevious
+            className={styles["slide-icon"]}
+            onClick={previousSlide}
+          />
           <div>
             {imageIndex + 1} / {images.length}
           </div>
-          <button onClick={nextSlide}>Next</button>
+          <GrCaretNext className={styles["slide-icon"]} onClick={nextSlide} />
         </div>
       ) : (
         <></>

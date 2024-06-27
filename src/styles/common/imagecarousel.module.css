@@ -11,8 +11,16 @@
 
 .action {
   display: flex;
+  align-items: center;
   gap: 1em;
 }
+
+.slide-icon {
+  height: 18px;
+  width: 18px;
+  cursor: pointer;
+}
+
 .image {
   max-height: 250px;
   max-width: 250px;

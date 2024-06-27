@@ -4,7 +4,7 @@ import { AppContext } from "../../../utils/contextProvider";
 
 import { createPostUseCase } from "../../../domain/post/postUseCase";
 export default function PostInputField() {
-  const { cookies, notify, setRefresh } = useContext(AppContext);
+  const { cookies, notify } = useContext(AppContext);
   const token = cookies["token"];
   const [files, setFiles] = useState([]);
   const [title, setTitle] = useState("");
@@ -30,7 +30,6 @@ export default function PostInputField() {
       }
       setLoading(false);
       notify("post created", "success");
-      setRefresh(true);
     } catch (error) {
       setLoading(false);
       setErr(error);
