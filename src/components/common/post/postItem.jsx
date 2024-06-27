@@ -4,6 +4,7 @@ import Placeholder from "../../../assets/image/placeholder.svg?react";
 import LinesEllipsis from "react-lines-ellipsis";
 import { AppContext } from "../../../utils/contextProvider";
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import FollowToggleButton from "./followButton";
 import DeletePostButton from "./deleteButton";
@@ -81,6 +82,7 @@ function Content({ post, fullDetail }) {
 }
 
 function Header({ post }) {
+  const navigate = useNavigate();
   const { getCurrentUser } = useContext(AppContext);
   const user = getCurrentUser();
   const [author, setAuthor] = useState("");
@@ -92,27 +94,39 @@ function Header({ post }) {
     setAuthor(name);
   }, [post, setAuthor, user]);
 
+  const handleProfileClick = () => {
+    if (post.author) {
+      if (user.user_id === post.author._id) {
+        navigate(`/my-profile`);
+      } else {
+        navigate(`/users/${post.author._id}`);
+      }
+    }
+  };
+
   return (
     <div className={styles.header}>
       <div className={styles.title}>{post.title}</div>
       <div className={styles.profile}>
-        {post.author.profile_url ? (
-          <img
-            className={styles["profile-icon"]}
-            src={post.author.profile_url}
-            alt={post.author.username}
-          />
-        ) : (
-          <Placeholder className={styles["profile-icon"]} />
-        )}
-        <div>
-          <LinesEllipsis
-            className={styles["profile-name"]}
-            text={author}
-            maxLine="1"
-            ellipsis="..."
-            basedOn="words"
-          />
+        <div className={styles["profile-main"]} onClick={handleProfileClick}>
+          {post.author.profile_url ? (
+            <img
+              className={styles["profile-icon"]}
+              src={post.author.profile_url}
+              alt={post.author.username}
+            />
+          ) : (
+            <Placeholder className={styles["profile-icon"]} />
+          )}
+          <div>
+            <LinesEllipsis
+              className={styles["profile-name"]}
+              text={author}
+              maxLine="1"
+              ellipsis="..."
+              basedOn="words"
+            />
+          </div>
         </div>
         <div>
           <Link to={`/posts/${post._id}`}>

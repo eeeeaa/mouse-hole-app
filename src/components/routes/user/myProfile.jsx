@@ -1,27 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../../utils/contextProvider";
-import { useParams } from "react-router-dom";
-import PropTypes from "prop-types";
-import styles from "../../styles/routes/profile.module.css";
+import { AppContext } from "../../../utils/contextProvider";
+import styles from "../../../styles/routes/profile.module.css";
 
-import { updateMyProfile } from "../../domain/user/userUseCase";
+import { updateMyProfile } from "../../../domain/user/userUseCase";
 
-import ErrorPage from "../common/error";
-import LoadingPage from "../common/loadingPage";
-
-ProfilePage.propTypes = {
-  isMe: PropTypes.bool,
-};
-
-function UserProfile() {
-  const { userId } = useParams();
-  const { cookies } = useContext(AppContext);
-  const token = cookies["token"];
-
-  return <div>user profile of {userId}</div>;
-}
-
-function MyProfile() {
+function MyProfileContent() {
   const { getCurrentUser, setCurrentUser, cookies, notify } =
     useContext(AppContext);
   const token = cookies["token"];
@@ -119,6 +102,10 @@ function MyProfile() {
   );
 }
 
-export default function ProfilePage({ isMe }) {
-  return <div>{isMe ? <MyProfile /> : <UserProfile />}</div>;
+export default function MyProfile() {
+  return (
+    <div>
+      <MyProfileContent />
+    </div>
+  );
 }

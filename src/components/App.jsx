@@ -18,7 +18,8 @@ import Sidebar from "./common/sidebar";
 import TopBar from "./common/topbar";
 
 import Login from "./routes/login";
-import ProfilePage from "./routes/profile";
+import ProfilePage from "./routes/user/profile";
+import MyProfile from "./routes/user/myProfile";
 import MyFollowings from "./routes/myfollowings";
 import PostPage from "./routes/post";
 import CreatePost from "./routes/createPost";
@@ -167,11 +168,11 @@ function App() {
         },
         {
           path: "/my-profile",
-          element: <ProfilePage isMe={true} />,
+          element: <MyProfile />,
         },
         {
           path: "/users/:userId",
-          element: <ProfilePage isMe={false} />,
+          element: <ProfilePage />,
         },
         {
           path: "/my-followings",
