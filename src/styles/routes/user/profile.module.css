@@ -6,13 +6,25 @@
   gap: 1em;
 }
 
+.profile-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  border: 1px solid white;
+  object-fit: cover;
+}
+
 .header {
+  min-width: 250px;
+  align-self: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid white;
+  padding: 0.5em 1em;
+  margin: 1em;
   border-radius: 1em;
-  margin: 0 1em;
+  box-shadow: 10px 10px #a1a1aa;
+  background-color: #27272a;
 
   .header-name {
     display: flex;

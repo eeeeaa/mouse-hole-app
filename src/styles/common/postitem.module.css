@@ -25,6 +25,9 @@
   font-size: x-large;
   font-weight: 600;
   margin-right: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .profile {

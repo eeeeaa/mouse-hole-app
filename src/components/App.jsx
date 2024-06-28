@@ -23,6 +23,7 @@ import MyProfile from "./routes/user/myProfile";
 import MyFollowings from "./routes/myfollowings";
 import PostPage from "./routes/post";
 import CreatePost from "./routes/createPost";
+import MyPosts from "./routes/myPosts";
 
 function Auth() {
   return (
@@ -185,6 +186,10 @@ function App() {
         {
           path: "/create-post",
           element: <CreatePost />,
+        },
+        {
+          path: "/my-posts",
+          element: <MyPosts />,
         },
       ],
     },

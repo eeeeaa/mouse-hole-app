@@ -6,6 +6,19 @@
   padding: 1em;
 }
 
+.topbar-header {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  margin-right: auto;
+}
+
+.topbar-icon {
+  height: 36px;
+  width: 36px;
+  color: #86efac;
+}
+
 .topbar-title {
   font-weight: 200;
   font-size: xx-large;

@@ -66,6 +66,7 @@ export default function Sidebar() {
       <ul className={styles["menu-list"]}>
         <MenuItem link={"/create-post"} title={"Create Post"} />
         <MenuItem link={"/my-profile"} title={"My profile"} />
+        <MenuItem link={"/my-posts"} title={"My posts"} />
         <MenuItem link={"/my-followings"} title={"My followings"} />
         <LogoutMenuItem title={"Logout"} />
       </ul>
