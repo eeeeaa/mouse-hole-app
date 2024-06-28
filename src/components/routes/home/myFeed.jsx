@@ -1,11 +1,17 @@
 import styles from "../../../styles/routes/home.module.css";
 import { useContext, useState, useEffect } from "react";
 import { AppContext } from "../../../utils/contextProvider";
+import PropTypes from "prop-types";
 
 import { getMyFeedUseCase } from "../../../domain/post/postUseCase";
 
 import LoadingPage from "../../common/loadingPage";
 import PostItem from "../../common/post/postItem";
+
+MyFeed.propTypes = {
+  refresh: PropTypes.bool,
+  setRefresh: PropTypes.func,
+};
 
 export default function MyFeed({ refresh, setRefresh }) {
   const { myFeeds, setMyFeeds, cookies, notify } = useContext(AppContext);

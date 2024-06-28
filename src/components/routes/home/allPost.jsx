@@ -1,10 +1,16 @@
 import styles from "../../../styles/routes/home.module.css";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../../utils/contextProvider";
+import PropTypes from "prop-types";
 
 import { getAllPostsUseCase } from "../../../domain/post/postUseCase";
 import LoadingPage from "../../common/loadingPage";
 import PostItem from "../../common/post/postItem";
+
+AllPosts.propTypes = {
+  refresh: PropTypes.bool,
+  setRefresh: PropTypes.func,
+};
 
 export default function AllPosts({ refresh, setRefresh }) {
   const { allPosts, setAllPosts, cookies, notify } = useContext(AppContext);
