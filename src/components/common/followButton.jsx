@@ -2,6 +2,7 @@ import styles from "../../styles/common/postitem.module.css";
 import { AppContext } from "../../utils/contextProvider";
 import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { GoPeople } from "react-icons/go";
 
 import {
   getMyFollowStatus,
@@ -113,7 +114,10 @@ export default function FollowToggleButton({ author }) {
               {follow ? "Following" : "Not Follow"}
             </div>
           ) : (
-            <button onClick={loadFollowStatus}>follow status</button>
+            <GoPeople
+              onClick={loadFollowStatus}
+              className={styles["verify-follow-button"]}
+            />
           )}
         </div>
       )}

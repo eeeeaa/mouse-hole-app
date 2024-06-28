@@ -63,11 +63,18 @@
   width: 24px;
 }
 
-.delete-button {
+.delete-button,
+.verify-follow-button,
+.verify-like-button,
+.detail-button {
   cursor: pointer;
   height: 24px;
   width: 24px;
   margin-top: 8px;
+}
+
+.detail-button {
+  color: white;
 }
 
 .like-status {
@@ -113,11 +120,4 @@
   color: white;
   background-color: #2eb82e;
   border-color: #2eb82e;
-}
-
-.detail-button {
-  height: 20px;
-  width: 20px;
-  color: white;
-  margin-top: 6px;
 }

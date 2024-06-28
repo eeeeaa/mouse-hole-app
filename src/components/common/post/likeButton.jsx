@@ -8,6 +8,7 @@ import { useContext, useState } from "react";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiFillLike } from "react-icons/ai";
 import PropTypes from "prop-types";
+import { IoMdHeartHalf } from "react-icons/io";
 
 LikeButton.propTypes = {
   post: PropTypes.object,
@@ -90,7 +91,10 @@ export default function LikeButton({ post }) {
               <div>{count}</div>
             </div>
           ) : (
-            <button onClick={handleGetLikeClick}>like status</button>
+            <IoMdHeartHalf
+              onClick={handleGetLikeClick}
+              className={styles["verify-like-button"]}
+            />
           )}
         </>
       )}
