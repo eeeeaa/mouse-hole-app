@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../../utils/contextProvider";
-import styles from "../../../styles/routes/profile.module.css";
+import styles from "../../../styles/routes/user/myprofile.module.css";
 
 import { updateMyProfile } from "../../../domain/user/userUseCase";
 

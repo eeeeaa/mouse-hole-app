@@ -6,7 +6,7 @@ import { AppContext } from "../../../utils/contextProvider";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import FollowToggleButton from "./followButton";
+import FollowToggleButton from "../followButton";
 import DeletePostButton from "./deleteButton";
 import ImageCarousel from "../imageCarousel";
 import LikeButton from "./likeButton";
@@ -140,7 +140,7 @@ function Header({ post }) {
           {user.user_id === post.author._id ? (
             <></>
           ) : (
-            <FollowToggleButton postAuthor={post.author} />
+            <FollowToggleButton author={post.author} />
           )}
           <DeletePostButton toBeDeletedPost={post} />
         </div>

@@ -27,6 +27,34 @@ export const getMyProfileUseCase = async (token) => {
   return { user, error };
 };
 
+export const getProfileUseCase = async (token, userId) => {
+  let user = null;
+  let error = null;
+
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  await fetch(`${import.meta.env.VITE_MOUSE_HOLE_API_URL}/users/${userId}`, {
+    method: "GET",
+    mode: "cors",
+    headers: headers,
+  })
+    .then(async (response) => {
+      if (response.status >= 400) {
+        console.log(response);
+        const json = await response.json();
+        throw new Error(json.message);
+      }
+      return response.json();
+    })
+    .then((response) => {
+      user = response.user;
+    })
+    .catch((err) => (error = err));
+
+  return { user, error };
+};
+
 export const getMyFollowingsUseCase = async (token) => {
   let users = [];
   let error = null;

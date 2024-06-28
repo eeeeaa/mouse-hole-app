@@ -1,0 +1,40 @@
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  gap: 1em;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid white;
+  border-radius: 1em;
+  margin: 0 1em;
+
+  .header-name {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+  }
+
+  .header-title {
+    margin: 0;
+    font-size: x-large;
+    font-weight: 700;
+  }
+
+  .header-subtitle {
+    margin: 0;
+    font-weight: 400;
+    font-size: medium;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

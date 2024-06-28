@@ -1,5 +1,5 @@
-import styles from "../../../styles/common/postitem.module.css";
-import { AppContext } from "../../../utils/contextProvider";
+import styles from "../../styles/common/postitem.module.css";
+import { AppContext } from "../../utils/contextProvider";
 import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
@@ -7,13 +7,13 @@ import {
   getMyFollowStatus,
   followUser,
   unfollowUser,
-} from "../../../domain/user/userRelationshipUseCase";
+} from "../../domain/user/userRelationshipUseCase";
 
 FollowToggleButton.propTypes = {
-  postAuthor: PropTypes.object,
+  author: PropTypes.object,
 };
 
-export default function FollowToggleButton({ postAuthor }) {
+export default function FollowToggleButton({ author }) {
   const { notify, cookies } = useContext(AppContext);
   const token = cookies["token"];
   const [follow, setFollow] = useState(false);
@@ -28,7 +28,7 @@ export default function FollowToggleButton({ postAuthor }) {
       setIsLoading(true);
       const { userRelationship, error } = await getMyFollowStatus(
         token,
-        postAuthor._id
+        author._id
       );
       if (error) {
         setErr(error);
@@ -57,7 +57,7 @@ export default function FollowToggleButton({ postAuthor }) {
         //send unfollow request
         const { userRelationship, error } = await unfollowUser(
           token,
-          postAuthor._id
+          author._id
         );
         if (error) {
           setErr(error);
@@ -69,10 +69,7 @@ export default function FollowToggleButton({ postAuthor }) {
         setIsLoading(false);
       } else {
         //send follow request
-        const { userRelationship, error } = await followUser(
-          token,
-          postAuthor._id
-        );
+        const { userRelationship, error } = await followUser(token, author._id);
         if (error) {
           setErr(error);
           setIsLoading(false);
