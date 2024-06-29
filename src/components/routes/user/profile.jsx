@@ -3,14 +3,13 @@ import { AppContext } from "../../../utils/contextProvider";
 import { useParams } from "react-router-dom";
 
 import styles from "../../../styles/routes/user/profile.module.css";
-import FollowToggleButton from "../../common/followButton";
 
 import { getProfileUseCase } from "../../../domain/user/userUseCase";
 
 import LoadingPage from "../../common/loadingPage";
 
-import Placeholder from "../../../assets/image/placeholder.svg?react";
 import UserPosts from "../../common/post/userPostList";
+import UserItem from "../../common/user/userItem";
 
 function UserProfile() {
   const { userId } = useParams();
@@ -55,38 +54,7 @@ function UserProfile() {
     <div className={styles.container}>
       {profile ? (
         <>
-          <div className={styles.header}>
-            <div>
-              {profile.profile_url ? (
-                <img
-                  className={styles["profile-icon"]}
-                  src={profile.profile_url}
-                  alt={profile.username}
-                />
-              ) : (
-                <Placeholder className={styles["profile-icon"]} />
-              )}
-            </div>
-            <div className={styles["header-name"]}>
-              {profile.display_name ? (
-                <>
-                  <h1 className={styles["header-title"]}>
-                    {profile.display_name}
-                  </h1>
-                  <h2 className={styles["header-subtitle"]}>
-                    {profile.username}
-                  </h2>
-                </>
-              ) : (
-                <>
-                  <h1 className={styles["header-title"]}>{profile.username}</h1>
-                </>
-              )}
-            </div>
-            <div>
-              <FollowToggleButton author={profile} />
-            </div>
-          </div>
+          <UserItem profile={profile} />
           <div className={styles["content"]}>
             <>
               {profile.display_name ? (

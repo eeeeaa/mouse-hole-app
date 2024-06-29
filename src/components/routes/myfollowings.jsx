@@ -5,6 +5,7 @@ import styles from "../../styles/routes/myfollowings.module.css";
 import { getMyFollowingsUseCase } from "../../domain/user/userUseCase";
 
 import LoadingPage from "../common/loadingPage";
+import UserItem from "../common/user/userItem";
 
 export default function MyFollowings() {
   const { cookies, notify } = useContext(AppContext);
@@ -45,7 +46,7 @@ export default function MyFollowings() {
     <div className={styles.container}>
       {followings.length > 0 ? (
         followings.map((user) => {
-          return <li key={user._id}>{user.username}</li>;
+          return <UserItem key={user._id} profile={user} clickable={true} />;
         })
       ) : (
         <li>you have no one you are following.</li>
