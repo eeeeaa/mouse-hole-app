@@ -1,0 +1,19 @@
+.page-select {
+  display: flex;
+  margin-top: 1em;
+  gap: 1em;
+  align-items: center;
+}
+
+.page-icon {
+  cursor: pointer;
+  color: white;
+}
+
+.page-icon:hover {
+  color: #d9f99d;
+}
+
+.page-icon-disabled {
+  color: #94a3b8;
+}

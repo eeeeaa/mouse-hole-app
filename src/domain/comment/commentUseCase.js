@@ -1,6 +1,10 @@
-export const getComments = async (token, postId) => {
+export const getComments = async (token, postId, page = 0) => {
   let comments = [];
+  let totalPages = 0;
+  let currentPage = 0;
   let error = null;
+
+  //TODO handle pagination
 
   const headers = {
     "Content-Type": "application/json",
@@ -8,7 +12,9 @@ export const getComments = async (token, postId) => {
   };
 
   await fetch(
-    `${import.meta.env.VITE_MOUSE_HOLE_API_URL}/posts/${postId}/comments`,
+    `${
+      import.meta.env.VITE_MOUSE_HOLE_API_URL
+    }/posts/${postId}/comments?page=${page}`,
     {
       method: "GET",
       mode: "cors",
@@ -24,10 +30,12 @@ export const getComments = async (token, postId) => {
     })
     .then((response) => {
       comments = response.comments;
+      totalPages = response.totalPages;
+      currentPage = response.currentPage;
     })
     .catch((err) => (error = err));
 
-  return { comments, error };
+  return { comments, totalPages, currentPage, error };
 };
 
 export const createComment = async (token, postId, message) => {

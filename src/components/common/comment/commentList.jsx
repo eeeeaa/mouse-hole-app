@@ -3,9 +3,14 @@ import { AppContext } from "../../../utils/contextProvider";
 import CommentInputForm from "./commentinput";
 import CommentItem from "./commentItem";
 import styles from "../../../styles/common/comment.module.css";
+import PropTypes from "prop-types";
 
 import { getComments } from "../../../domain/comment/commentUseCase";
 import LoadingPage from "../loadingPage";
+
+CommentList.propTypes = {
+  post: PropTypes.object,
+};
 
 export default function CommentList({ post }) {
   const { cookies, notify } = useContext(AppContext);
