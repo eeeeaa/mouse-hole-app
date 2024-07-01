@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 
 import { getComments } from "../../../domain/comment/commentUseCase";
 import LoadingPage from "../loadingPage";
+import PageSelect from "../pageSelect";
 
 CommentList.propTypes = {
   post: PropTypes.object,
@@ -21,29 +22,39 @@ export default function CommentList({ post }) {
   const [data, setData] = useState([]);
   const [isExpand, setIsExpand] = useState(false);
 
-  useEffect(() => {
-    const loadComments = async () => {
-      try {
-        setLoading(true);
-        const { comments, error } = await getComments(token, post._id);
-        if (error) {
-          setLoading(false);
-          setErr(error);
-          return;
-        }
+  const [pageState, setPageState] = useState({ current: 0, total: 0 });
+  const [nextButtonEnabled, setNextButtonEnabled] = useState(true);
+  const [prevButtonEnabled, setPrevButtonEnabled] = useState(false);
 
-        setLoading(false);
-        setData(comments);
-      } catch (error) {
+  const loadComments = async (page) => {
+    try {
+      setLoading(true);
+      const { comments, totalPages, currentPage, error } = await getComments(
+        token,
+        post._id,
+        page
+      );
+      if (error) {
         setLoading(false);
         setErr(error);
+        return;
       }
-    };
 
-    if (isExpand) {
-      loadComments();
+      setLoading(false);
+      setData(comments);
+      setPageState({ current: currentPage, total: totalPages });
+    } catch (error) {
+      setLoading(false);
+      setErr(error);
     }
-  }, [isExpand, token, post]);
+  };
+
+  useEffect(() => {
+    if (isExpand) {
+      loadComments(pageState.current);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isExpand]);
 
   useEffect(() => {
     if (err) {
@@ -58,6 +69,19 @@ export default function CommentList({ post }) {
         setIsExpand={setIsExpand}
         post={post}
       />
+
+      {isExpand && !loading && data.length > 0 ? (
+        <PageSelect
+          pageState={pageState}
+          prevButtonEnabled={prevButtonEnabled}
+          setPrevButtonEnabled={setPrevButtonEnabled}
+          nextButtonEnabled={nextButtonEnabled}
+          setNextButtonEnabled={setNextButtonEnabled}
+          loadData={loadComments}
+        />
+      ) : (
+        <></>
+      )}
 
       <div className={styles["comment-list"]}>
         {isExpand ? (

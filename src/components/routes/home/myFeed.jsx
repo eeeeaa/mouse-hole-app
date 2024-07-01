@@ -65,14 +65,18 @@ export default function MyFeed({ refresh, setRefresh }) {
 
   return (
     <div className={styles["post-container"]}>
-      <PageSelect
-        pageState={pageState}
-        prevButtonEnabled={prevButtonEnabled}
-        setPrevButtonEnabled={setPrevButtonEnabled}
-        nextButtonEnabled={nextButtonEnabled}
-        setNextButtonEnabled={setNextButtonEnabled}
-        loadData={loadData}
-      />
+      {myFeeds.length > 0 ? (
+        <PageSelect
+          pageState={pageState}
+          prevButtonEnabled={prevButtonEnabled}
+          setPrevButtonEnabled={setPrevButtonEnabled}
+          nextButtonEnabled={nextButtonEnabled}
+          setNextButtonEnabled={setNextButtonEnabled}
+          loadData={loadData}
+        />
+      ) : (
+        <></>
+      )}
       <div className={styles["post-list"]}>
         {myFeeds.length > 0 ? (
           myFeeds.map((post) => {

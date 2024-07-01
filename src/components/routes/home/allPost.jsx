@@ -62,14 +62,19 @@ export default function AllPosts({ refresh, setRefresh }) {
 
   return (
     <div className={styles["post-container"]}>
-      <PageSelect
-        pageState={pageState}
-        prevButtonEnabled={prevButtonEnabled}
-        setPrevButtonEnabled={setPrevButtonEnabled}
-        nextButtonEnabled={nextButtonEnabled}
-        setNextButtonEnabled={setNextButtonEnabled}
-        loadData={loadData}
-      />
+      {allPosts.length > 0 ? (
+        <PageSelect
+          pageState={pageState}
+          prevButtonEnabled={prevButtonEnabled}
+          setPrevButtonEnabled={setPrevButtonEnabled}
+          nextButtonEnabled={nextButtonEnabled}
+          setNextButtonEnabled={setNextButtonEnabled}
+          loadData={loadData}
+        />
+      ) : (
+        <></>
+      )}
+
       <div className={styles["post-list"]}>
         {allPosts.length > 0 ? (
           allPosts.map((post) => {

@@ -60,14 +60,19 @@ export default function UserPosts({ userId }) {
 
   return (
     <div className={styles.container}>
-      <PageSelect
-        pageState={pageState}
-        prevButtonEnabled={prevButtonEnabled}
-        setPrevButtonEnabled={setPrevButtonEnabled}
-        nextButtonEnabled={nextButtonEnabled}
-        setNextButtonEnabled={setNextButtonEnabled}
-        loadData={loadData}
-      />
+      {userPosts.length > 0 ? (
+        <PageSelect
+          pageState={pageState}
+          prevButtonEnabled={prevButtonEnabled}
+          setPrevButtonEnabled={setPrevButtonEnabled}
+          nextButtonEnabled={nextButtonEnabled}
+          setNextButtonEnabled={setNextButtonEnabled}
+          loadData={loadData}
+        />
+      ) : (
+        <></>
+      )}
+
       <div>
         {userPosts.length > 0 ? (
           userPosts.map((post) => {
