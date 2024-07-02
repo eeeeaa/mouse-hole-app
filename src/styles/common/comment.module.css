@@ -83,3 +83,22 @@
   border: 1px solid white;
   object-fit: cover;
 }
+
+.like-button {
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+}
+
+.verify-like-button {
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+  margin-top: 8px;
+}
+
+.like-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}

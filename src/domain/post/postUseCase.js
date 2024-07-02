@@ -146,6 +146,49 @@ export const createPostUseCase = async ({
   return { post, error };
 };
 
+export const editPostUseCase = async ({
+  token,
+  files = undefined,
+  title = undefined,
+  content = undefined,
+  postId,
+}) => {
+  let post = null;
+  let error = null;
+
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("content", content);
+  if (files) {
+    for (const file of files) {
+      formData.append("image", file);
+    }
+  }
+
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  await fetch(`${import.meta.env.VITE_MOUSE_HOLE_API_URL}/posts/${postId}`, {
+    method: "PUT",
+    mode: "cors",
+    headers: headers,
+    body: formData,
+  })
+    .then(async (response) => {
+      if (response.status >= 400) {
+        const json = await response.json();
+        throw new Error(json.message);
+      }
+      return response.json();
+    })
+    .then((response) => {
+      post = response.updatedPost;
+    })
+    .catch((err) => (error = err));
+
+  return { post, error };
+};
+
 export const deletePost = async (token, postId) => {
   let post = null;
   let error = null;

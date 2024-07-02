@@ -69,6 +69,7 @@
 .delete-button,
 .verify-follow-button,
 .verify-like-button,
+.edit-button,
 .detail-button {
   cursor: pointer;
   height: 24px;

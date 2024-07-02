@@ -11,6 +11,7 @@ import DeletePostButton from "./deleteButton";
 import ImageCarousel from "../imageCarousel";
 import LikeButton from "./likeButton";
 import { BiMessageDetail } from "react-icons/bi";
+import { CiEdit } from "react-icons/ci";
 import { decode } from "html-entities";
 
 PostItem.propTypes = {
@@ -104,6 +105,10 @@ function Header({ post }) {
     }
   };
 
+  const handleEditClick = () => {
+    navigate(`/posts/${post._id}/edit`);
+  };
+
   return (
     <div className={styles.header}>
       <div className={styles.title}>{post.title}</div>
@@ -136,6 +141,16 @@ function Header({ post }) {
         <div>
           <LikeButton post={post} />
         </div>
+        {user.user_id === post.author._id ? (
+          <div>
+            <CiEdit
+              className={styles["edit-button"]}
+              onClick={handleEditClick}
+            />
+          </div>
+        ) : (
+          <></>
+        )}
         <div>
           {user.user_id === post.author._id ? (
             <></>

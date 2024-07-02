@@ -24,6 +24,7 @@ import MyFollowings from "./routes/myfollowings";
 import PostPage from "./routes/post";
 import CreatePost from "./routes/createPost";
 import MyPosts from "./routes/myPosts";
+import EditPost from "./routes/editPost";
 
 function Auth() {
   return (
@@ -190,6 +191,10 @@ function App() {
         {
           path: "/my-posts",
           element: <MyPosts />,
+        },
+        {
+          path: "/posts/:postId/edit",
+          element: <EditPost />,
         },
       ],
     },
