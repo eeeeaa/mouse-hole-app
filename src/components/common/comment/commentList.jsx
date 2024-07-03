@@ -23,7 +23,7 @@ export default function CommentList({ post }) {
   const [isExpand, setIsExpand] = useState(false);
 
   const [pageState, setPageState] = useState({ current: 0, total: 0 });
-  const [nextButtonEnabled, setNextButtonEnabled] = useState(true);
+  const [nextButtonEnabled, setNextButtonEnabled] = useState(false);
   const [prevButtonEnabled, setPrevButtonEnabled] = useState(false);
 
   const loadComments = async (page) => {

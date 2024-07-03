@@ -2,11 +2,16 @@ import styles from "../../../styles/common/postinput.module.css";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../../utils/contextProvider";
+import PropTypes from "prop-types";
 
 import {
   createPostUseCase,
   editPostUseCase,
 } from "../../../domain/post/postUseCase";
+
+PostInputField.propTypes = {
+  postSrc: PropTypes.object,
+};
 
 export default function PostInputField({ postSrc = null }) {
   const { cookies, notify } = useContext(AppContext);

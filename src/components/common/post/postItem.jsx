@@ -12,7 +12,7 @@ import ImageCarousel from "../imageCarousel";
 import LikeButton from "./likeButton";
 import { BiMessageDetail } from "react-icons/bi";
 import { CiEdit } from "react-icons/ci";
-import { decode } from "html-entities";
+import { unicodeDecode } from "../../../utils/unicodeDecoder";
 
 PostItem.propTypes = {
   post: PropTypes.object,
@@ -66,11 +66,13 @@ function Content({ post, fullDetail }) {
       <ImageCarousel images={post.image_urls} />
       <div>
         {fullDetail ? (
-          <div className={styles["text-content"]}>{decode(post.content)}</div>
+          <div className={styles["text-content"]}>
+            {unicodeDecode(post.content)}
+          </div>
         ) : (
           <LinesEllipsis
             className={styles["text-content"]}
-            text={decode(post.content)}
+            text={unicodeDecode(post.content)}
             maxLine="2"
             ellipsis="..."
             trimRight={true}
@@ -123,6 +125,7 @@ function Header({ post }) {
           ) : (
             <Placeholder className={styles["profile-icon"]} />
           )}
+
           <div>
             <LinesEllipsis
               className={styles["profile-name"]}

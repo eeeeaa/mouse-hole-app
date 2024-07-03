@@ -12,7 +12,7 @@ Home.propTypes = {
 };
 
 export default function Home({ isAll }) {
-  const [refresh, setRefresh] = useState(true);
+  const [refresh, setRefresh] = useState(false);
   return (
     <>
       <IoMdRefresh className="refresh-icon" onClick={() => setRefresh(true)} />

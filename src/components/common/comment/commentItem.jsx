@@ -1,6 +1,6 @@
 import styles from "../../../styles/common/comment.module.css";
 import PropTypes from "prop-types";
-import { decode } from "html-entities";
+import { unicodeDecode } from "../../../utils/unicodeDecoder";
 import Placeholder from "../../../assets/image/placeholder.svg?react";
 import { CommentDeleteButton } from "./commentDeleteButton";
 import CommentLikeButton from "./commentLikeButton";
@@ -31,7 +31,9 @@ export default function CommentItem({ comment, post }) {
         <CommentLikeButton postId={post._id} commentId={comment._id} />
         <CommentDeleteButton toBeDeletedComment={comment} postId={post._id} />
       </div>
-      <div className={styles["item-content"]}>{decode(comment.message)}</div>
+      <div className={styles["item-content"]}>
+        {unicodeDecode(comment.message)}
+      </div>
       <div className={styles["item-footer"]}>
         <div className={styles["item-date"]}>{comment.created_at}</div>
         <div className={styles["item-date"]}>{comment.updated_at}</div>

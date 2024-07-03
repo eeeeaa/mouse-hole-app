@@ -19,7 +19,7 @@ export default function AllPosts({ refresh, setRefresh }) {
   const [err, setErr] = useState(null);
   const [loading, setLoading] = useState(false);
   const [pageState, setPageState] = useState({ current: 0, total: 0 });
-  const [nextButtonEnabled, setNextButtonEnabled] = useState(true);
+  const [nextButtonEnabled, setNextButtonEnabled] = useState(false);
   const [prevButtonEnabled, setPrevButtonEnabled] = useState(false);
 
   const loadData = async (page) => {
