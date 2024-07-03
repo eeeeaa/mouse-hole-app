@@ -1,8 +1,7 @@
-# React + Vite
+# Mouse hole app demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+demo of post and comment social media site, made following The odin project
 
-Currently, two official plugins are available:
+# Resources
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- API repository: [link](https://github.com/eeeeaa/mouse-hole-api)
