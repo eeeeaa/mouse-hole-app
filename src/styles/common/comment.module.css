@@ -38,7 +38,7 @@
   border-radius: 1em;
   border-color: transparent;
   resize: none;
-  background-color: #1e293b;
+  background-color: #4c0519;
   outline: none;
   padding: 1em;
 }
@@ -55,7 +55,8 @@
   flex-direction: column;
   padding: 1em;
   margin: 1em;
-  background-color: #475569;
+  background-color: #831843;
+  border-radius: 1em;
 
   .item-header {
     display: flex;
@@ -101,4 +102,27 @@
   display: flex;
   align-items: center;
   gap: 0.5em;
+}
+
+.create-button,
+.toggle-button {
+  padding: 0.5em 1em;
+  border-radius: 1em;
+  border-color: transparent;
+}
+
+.create-button {
+  background-color: #166534;
+}
+
+.create-button:hover {
+  background-color: #22c55e;
+}
+
+.toggle-button {
+  background-color: #db2777;
+}
+
+.toggle-button:hover {
+  background-color: #ec4899;
 }

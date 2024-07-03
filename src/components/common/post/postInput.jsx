@@ -109,6 +109,7 @@ export default function PostInputField({ postSrc = null }) {
             multiple="multiple"
             accept=".gif,.jpg,.jpeg,.png"
             onChange={(e) => setFiles(e.target.files)}
+            className={"custom-file-input"}
           />
         </div>
         <div className={styles["post-field"]}>
@@ -133,7 +134,11 @@ export default function PostInputField({ postSrc = null }) {
             value={content}
           ></textarea>
         </div>
-        <button type="submit" disabled={isButtonDisabled}>
+        <button
+          type="submit"
+          className={styles["submit-button"]}
+          disabled={isButtonDisabled}
+        >
           Post
         </button>
       </form>

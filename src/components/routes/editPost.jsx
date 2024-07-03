@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext } from "react";
 import { AppContext } from "../../utils/contextProvider";
-import styles from "../../styles/routes/editpost.module.css";
 import { useParams } from "react-router-dom";
 import { getPost } from "../../domain/post/postUseCase";
 import PostInputField from "../common/post/postInput";

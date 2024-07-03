@@ -11,7 +11,8 @@
   flex-direction: column;
   gap: 1em;
   padding: 1em;
-  background-color: #52525b;
+  background-color: #500724;
+  box-shadow: 10px 10px #fda4af;
   border-radius: 1em;
 }
 
@@ -22,10 +23,10 @@
 
 .form-button {
   padding: 0.5em 1em;
-  background-color: #1e293b;
+  background-color: #9f1239;
   border-color: transparent;
 }
 
 .form-button:hover {
-  background-color: #475569;
+  background-color: #e11d48;
 }

@@ -3,7 +3,8 @@
   flex-direction: column;
   gap: 1em;
   padding: 1em;
-  background-color: #374151;
+  background-color: #500724;
+  box-shadow: 10px 10px #fda4af;
   border-radius: 1em;
   margin: 0 1em 0 1em;
 }
@@ -14,5 +15,21 @@
 }
 
 .post-textarea {
+  appearance: none;
   resize: none;
+  border-color: transparent;
+  background-color: #831843;
+  border-radius: 1em;
+  outline: none;
+  padding: 1em;
+}
+
+.submit-button {
+  padding: 0.5em 1em;
+  background-color: #9f1239;
+  border-color: transparent;
+}
+
+.submit-button:hover {
+  background-color: #e11d48;
 }

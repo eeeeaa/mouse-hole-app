@@ -64,10 +64,18 @@ export default function CommentInputForm({ isExpand, setIsExpand, post }) {
           />
         </div>
         <div className={styles.buttons}>
-          <button type="submit" disabled={isButtonDisabled}>
+          <button
+            type="submit"
+            disabled={isButtonDisabled}
+            className={styles["create-button"]}
+          >
             Create Comment
           </button>
-          <button onClick={handleToggleExpand} type="button">
+          <button
+            onClick={handleToggleExpand}
+            type="button"
+            className={styles["toggle-button"]}
+          >
             toggle comment
           </button>
         </div>

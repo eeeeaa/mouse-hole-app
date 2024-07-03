@@ -73,7 +73,7 @@ function MyProfileContent() {
             name="image"
             id="image"
             accept=".gif,.jpg,.jpeg,.png"
-            className={styles["form-input-file"]}
+            className={"custom-file-input"}
             onChange={(e) => setImage(e.target.files[0])}
           />
         </div>
